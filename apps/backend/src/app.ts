@@ -1,4 +1,4 @@
-import express, {Express} from "express";
+import express, { Express } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -28,8 +28,8 @@ app.use(cors(corsOptions));
 setupSwagger(app);
 
 // listen for requests on root and send simple text response
-app.get("/",  (_req, res) => {
-    res.send("Got response from backend!");
+app.get("/", (_req, res) => {
+  res.send("Got response from backend!" + process.env.FRONTEND_URL);
 });
 
 // use termRoutes
@@ -37,6 +37,6 @@ app.use("/api/v1", termRoutes);
 
 //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
-app.use(errorHandler); 
+app.use(errorHandler);
 
 export default app;
